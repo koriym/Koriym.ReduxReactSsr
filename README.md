@@ -45,12 +45,13 @@ CSR:`<div id="root"></div>`
 ## Run example
 
 ```
-cd example
+git clone git@github.com:koriym/Koriym.ReduxReactSsr.git
+composer install
+cd Koriym.ReduxReactSsr/example/
 npm install
 npm run build
 npm start
 ```
 
-
- * `http://127.0.0.1:8000/` for SSR
- * `http://127.0.0.1:8000/index.html` for CSR
+ * `http://127.0.0.1:3000/` for SSR
+ * `http://127.0.0.1:3000/index.html` for CSR
