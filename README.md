@@ -39,8 +39,8 @@ list($html, $js) = $ssr('App', $state);
 
 When you don't put html into `<div id="root">`, it still work as CSR (Client Side Rendering) page.
 
-SSR:`<div id="root"><?php echo $html; ?></div>`
-CSR:`<div id="root"></div>`
+* SSR:`<div id="root"><?php echo $html; ?></div>`
+* CSR:`<div id="root"></div>`
 
 ## Run example
 
