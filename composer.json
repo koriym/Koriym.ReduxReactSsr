@@ -1,0 +1,66 @@
+{
+    "name": "koriym/readux-react-ssr",
+    "description": "Redux ReactJS server side render support for PHP",
+    "keywords": [
+        "Skeleton",
+        "PSR"
+    ],
+    "homepage": "https://github.com/koriym/PHP.Skeleton",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Akihito Koriyama",
+            "email": "akihito.koriyama@gmail.com"
+        },
+        {
+            "name": "Shingo Kumagai",
+            "email": "shingo4092@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "ext-v8js": ">=1.3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~5.3",
+        "squizlabs/php_codesniffer": "~2.6",
+        "phpmd/phpmd": "~2.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Koriym\\ReduxReactSsr\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Koriym\\ReduxReactSsr\\": [
+                "tests/",
+                "tests/Fake"
+            ]
+        }
+    },
+    "scripts": {
+        "test": [
+            "phpmd src text ./phpmd.xml",
+            "phpcs src tests",
+            "phpunit"
+        ],
+        "cs-fix": [
+            "php-cs-fixer fix --config-file=./.php_cs",
+            "phpcbf src"
+        ],
+        "build": [
+            "rm -rf ./build; mkdir -p ./build/logs ./build/pdepend ./build/api",
+            "pdepend --jdepend-xml=./build/logs/jdepend.xml --jdepend-chart=./build/pdepend/dependencies.svg --overview-pyramid=./build/pdepend/overview-pyramid.svg src",
+            "phploc --log-csv ./build/logs/phploc.csv src",
+            "phpcs --report=checkstyle --report-file=./build/logs/checkstyle.xml --standard=phpcs.xml src",
+            "apigen generate -s src -d build/api --debug",
+            "@test"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
+}
