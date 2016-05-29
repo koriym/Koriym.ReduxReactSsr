@@ -57,10 +57,5 @@
             "apigen generate -s src -d build/api --debug",
             "@test"
         ]
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0.x-dev"
-        }
     }
 }
