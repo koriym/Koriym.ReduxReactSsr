@@ -1,6 +1,6 @@
-# Koriytm.ReduxReactSsr
+# ReduxReactSsr
 
-Koriytm.ReduxReduxSsr renders Redux React UI on the server-side with PHP as well as on the client.
+**ReduxReactSsr** renders Redux React UI on the server-side with **V8Js** as well as on the client.
 
 ## Prerequisites
 
@@ -9,7 +9,7 @@ Koriytm.ReduxReduxSsr renders Redux React UI on the server-side with PHP as well
 
 ## Usage
 
-```
+```php
 <?php
 
 use Koriym\ReduxReactSsr\ReduxReactSsr;
