@@ -1,6 +1,6 @@
 {
     "name": "koriym/redux-react-ssr",
-    "description": "Redux ReactJS server side rendering support for PHP",
+    "description": "Redux ReactJS server side rendering using v8js",
     "keywords": [
         "Skeleton",
         "PSR"
