@@ -24,7 +24,8 @@
     "require-dev": {
         "phpunit/phpunit": "~4.8 || ~5.0",
         "squizlabs/php_codesniffer": "~2.6",
-        "phpmd/phpmd": "~2.4"
+        "phpmd/phpmd": "~2.4",
+        "phpv8/v8js-stubs": "~1.2"
     },
     "autoload": {
         "psr-4": {
