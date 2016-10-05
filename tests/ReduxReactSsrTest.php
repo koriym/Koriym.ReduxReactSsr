@@ -41,14 +41,14 @@ class ReactReduxSsrTest extends \PHPUnit_Framework_TestCase
 
     public function testInvalidReducerNameSpace()
     {
-        $this->expectOutputString('Unexpected key "__INVALID__" found in initialState argument passed to createStore. Expected to find one of the known reducer keys instead: "hello". Unexpected keys will be ignored.');
+        $this->expectOutputString('Unexpected key "__INVALID__" found in preloadedState argument passed to createStore. Expected to find one of the known reducer keys instead: "hello". Unexpected keys will be ignored.');
         $state = ['__INVALID__'=> ['message' => 'Hello SSR !']];
         $this->ssr->__invoke('App', $state);
     }
 
     public function testInvalidState()
     {
-        $this->expectOutputString('Warning: Failed propType: Required prop `message` was not specified in `Hello`.');
+        $this->expectOutputString('Warning: Failed prop type: Required prop `message` was not specified in `Hello`.' . PHP_EOL . '    in Hello');
         $state = ['hello'=> ['__INVALID__' => 'Hello SSR !']];
         $this->ssr->__invoke('App', $state);
     }
