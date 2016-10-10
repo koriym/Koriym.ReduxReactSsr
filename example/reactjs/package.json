@@ -1,0 +1,22 @@
+{
+  "name": "react-min-ssr-example",
+  "version": "0.1.0",
+  "description": "Hello, World ReactJS app",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "php -S 127.0.0.1:3000"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "react": "^15.0.1",
+    "react-dom": "^15.0.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.16.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "webpack": "^1.13.2"
+  }
+}
