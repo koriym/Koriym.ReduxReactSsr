@@ -1,8 +1,8 @@
 <?php
+require dirname(__DIR__, 2) . '/vendor/autoload.php';
 
 use Koriym\ReduxReactSsr\ReduxReactSsr;
 
-require dirname(__DIR__) . '/vendor/autoload.php';
 $ssr = new ReduxReactSsr(
     file_get_contents(__DIR__ . '/build/react.bundle.js'),
     file_get_contents(__DIR__ . '/build/app.bundle.js')
