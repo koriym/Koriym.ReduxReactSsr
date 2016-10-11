@@ -3,7 +3,9 @@ import React from 'react';
 class HelloWorld extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { name: this.props.name };
+    this.state = {
+      name: this.props.name
+    };
   }
   _handleClick() {
     this.setState({ name: 'CSR'});
