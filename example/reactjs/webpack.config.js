@@ -4,8 +4,8 @@ var webpack = require('webpack')
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: {
-    react: './react.js',
-    helloworld: './components/Helloworld.jsx',
+    react: './react',
+    helloworld: './Helloworld',
   },
   output: {
     path: path.join(__dirname, 'build'),
