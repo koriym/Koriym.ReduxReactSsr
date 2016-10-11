@@ -20,11 +20,7 @@ $js = $reactJs->getJS('#root');
     <!-- load react and app code -->
     <script src="build/react.bundle.js"></script>
     <script src="build/helloworld.bundle.js"></script>
-    // client init/render
-    // this is a straight echo of the JS because the JS resources
-    // were loaded synchronously
-    // You may want to load JS async and wrap the return of getJS()
-    // in a function you can call later
+    <!-- client init/render -->
     <script><?php echo $js; ?></script>
   </body>
 </html>
