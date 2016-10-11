@@ -6,7 +6,7 @@ $reactJs = new \ReactJS(
     file_get_contents(__DIR__ . '/build/react.bundle.js'),
     file_get_contents(__DIR__ . '/build/helloworld.bundle.js')
 );
-$reactJs->setComponent('HelloWorld', ['name' => 'ReactJS']);
+$reactJs->setComponent('HelloWorld', ['name' => 'World']);
 $html = $reactJs->getMarkup();
 $js = $reactJs->getJS('#root');
 ?>
