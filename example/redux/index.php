@@ -18,7 +18,6 @@ list($html, $js) = $ssr('App', $state);
   <body>
     <div id="root"><?php echo $html; ?></div>
     <?php echo $js ?>
-    <script src="build/react.bundle.js"></script>
     <script src="build/client.bundle.js"></script>
   </body>
 </html>
