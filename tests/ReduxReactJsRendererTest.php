@@ -24,8 +24,7 @@ EOT;
             file_get_contents(__DIR__ . '/redux/build/react.bundle.js'),
             file_get_contents(__DIR__ . '/redux/build/app.bundle.js'),
             'redux/build/client.bundle.js',
-            $template,
-            file_get_contents(__DIR__ . '/redux/build/client.bundle.js')
+            $template
         );
         $this->assertInstanceOf(ReduxReactJsRenderer::class, $ssr);
 
@@ -40,6 +39,5 @@ EOT;
         $html = $ssr->render(['hello' => ['message' => 'Hello, Redux!']]);
         $this->assertContains('<script src="redux/build/client.bundle.js"></script>', $html);
         $this->assertContains('<script>window.__PRELOADED_STATE__ = {"hello":{"message":"Hello, Redux!"}};</script>', $html);
-        file_put_contents(__DIR__ . '/redux.html', $html);
     }
 }

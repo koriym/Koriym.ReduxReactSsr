@@ -81,7 +81,6 @@ EOT;
 
     private function getCode(string $reactBundleSrc, string $appBundleSrc, array $store)
     {
-        $rootContainer = 'App';
         $storeJson = json_encode($store);
         $code = <<< "EOT"
 var console = {warn: function(){}, error: print};
@@ -90,29 +89,13 @@ var document = typeof document === 'undefined' ? '' : document;
 {$reactBundleSrc}
 var React = global.React, ReactDOM = global.ReactDOM, ReactDOMServer = global.ReactDOMServer;
 {$appBundleSrc}
-var Provider = global.Provider, configureStore = global.configureStore, App = global.{$rootContainer};
-if (! App) { PHP.error('{$rootContainer}'); };
+var Provider = global.Provider, configureStore = global.configureStore, App = global.App;
 var store = configureStore({$storeJson});
 App = React.createElement(App);
 var html = ReactDOMServer.renderToString(React.createElement(Provider, { store: store }, App));
 var state = JSON.stringify(store.getState());
 tmp = {html: html, js: '<script>window.__PRELOADED_STATE__ = ' + state + ';</script>'};
 EOT;
-//        $code = <<< "EOT"
-//var console = {warn: function(){}, error: print};
-//var global = global || this, self = self || this, window = window || this;
-//var document = typeof document === 'undefined' ? '' : document;
-//{$reactBundleSrc}
-//var React = global.React, ReactDOM = global.ReactDOM, ReactDOMServer = global.ReactDOMServer;
-//{$this->clientBundleSrc}
-//var Provider = global.Provider, configureStore = global.configureStore, App = global.{$rootContainer};
-//if (! App) { PHP.error('{$rootContainer}'); };
-//var store = configureStore({$storeJson});
-//App = React.createElement(App);
-//var html = ReactDOMServer.renderToString(React.createElement(Provider, { store: store }, App));
-//var state = JSON.stringify(store.getState());
-//tmp = {html: html, js: '<script>window.__PRELOADED_STATE__ = ' + state + ';</script>'};
-//EOT;
 
        return $code;
     }
