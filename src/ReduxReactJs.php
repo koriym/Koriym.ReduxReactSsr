@@ -9,10 +9,7 @@ namespace Koriym\ReduxReactSsr;
 use Koriym\ReduxReactSsr\Exception\RootContainerNotFound;
 use V8Js;
 
-/**
- * @deprecated use ReduxReactJs instead
- */
-final class ReduxReactSsr implements ReduxSsrInterface
+final class ReduxReactJs implements ReduxReactJsInterface
 {
     /*
      * @var V8Js
@@ -43,7 +40,10 @@ final class ReduxReactSsr implements ReduxSsrInterface
         };
     }
 
-    public function __invoke(string $rootContainer, array $store)
+    /**
+     * {@inheritdoc}
+     */
+    public function __invoke(string $rootContainer, array $store, string $id)
     {
         $storeJson = json_encode($store);
         $code = <<< "EOT"
@@ -55,14 +55,12 @@ var React = global.React, ReactDOM = global.ReactDOM, ReactDOMServer = global.Re
 {$this->appBundleSrc}
 var Provider = global.Provider, configureStore = global.configureStore, App = global.{$rootContainer};
 if (! App) { PHP.error('{$rootContainer}'); };
-var store = configureStore({$storeJson});
-App = React.createElement(App);
-var html = ReactDOMServer.renderToString(React.createElement(Provider, { store: store }, App));
-var state = JSON.stringify(store.getState());
-tmp = {html: html, js: '<script>window.__PRELOADED_STATE__ = ' + state + ';</script>'};
+var html = ReactDOMServer.renderToString(React.createElement(Provider, { store: configureStore({$storeJson}) }, React.createElement(App)));
+tmp = {html: html};
 EOT;
         $v8 = $this->v8->executeString($code);
+        $js = "ReactDOM.render(React.createElement(Provider,{store:configureStore($storeJson) },React.createElement(App)),document.getElementById('{$id}'));";
 
-        return [$v8->html, $v8->js . PHP_EOL];
+        return [$v8->html, $js];
     }
 }

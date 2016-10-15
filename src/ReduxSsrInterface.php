@@ -6,6 +6,9 @@
  */
 namespace Koriym\ReduxReactSsr;
 
+/**
+ * @deprecated
+ */
 interface ReduxSsrInterface
 {
     public function __invoke(string $rootContainer, array $store);
