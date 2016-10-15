@@ -85,7 +85,7 @@ final class ReactJsRenderer implements ReactJsRendererInterface
     /**
      * {@inheritdoc}
      */
-    public function render(array $values) : string
+    public function render(array $values, string $template = null) : string
     {
         $reactJs = new \ReactJS($this->reactBundleSrc, $this->appBundleSrc);
         $reactJs->setComponent($this->rootContainer, $values);
@@ -96,7 +96,7 @@ final class ReactJsRenderer implements ReactJsRendererInterface
     <script src="{$this->appPublicPath}"></script>
     <script>{$jsCode}</script>
 EOT;
-        $html = str_replace(['{{ html }}', '{{ js }}'], [$html, $js], $this->template);
+        $html = str_replace(['{{ html }}', '{{ js }}'], [$html, $js], $template ?? $this->template);
 
         return $html;
     }

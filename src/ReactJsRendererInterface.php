@@ -14,9 +14,10 @@ interface ReactJsRendererInterface
     /**
      * Return ReactJs html
      *
-     * @param array $values
+     * @param array  $values   assigned value
+     * @param string $template optional override template
      *
      * @return string
      */
-    public function render(array $values) : string;
+    public function render(array $values, string $template = null) : string;
 }

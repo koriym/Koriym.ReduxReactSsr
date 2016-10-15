@@ -44,17 +44,17 @@ final class ReduxReactJsRenderer implements ReactJsRendererInterface
     /**
      * @param string $appBundleSrc      bundled application code
      * @param string $appPublicPath     app public path for "<script src="
-     * @param string $template          html template
+     * @param string $defaultTemplate          html template
      */
     public function __construct(
         string $reactBundleSrc,
         string $appBundleSrc,
         string $clientPublicPath,
-        string $template
+        string $defaultTemplate
     ) {
         $this->reactBundleSrc = $reactBundleSrc;
         $this->appBundleSrc = $appBundleSrc;
-        $this->template = $template;
+        $this->template = $defaultTemplate;
         $this->v8 = new V8Js();
         $this->v8->error = function ($container) {
             throw new RootContainerNotFound($container);
@@ -66,7 +66,7 @@ final class ReduxReactJsRenderer implements ReactJsRendererInterface
     /**
      * {@inheritdoc}
      */
-    public function render(array $values) : string
+    public function render(array $values, string $template = null) : string
     {
         $jsCode = $this->getCode($this->reactBundleSrc, $this->appBundleSrc, $values);
         $redux = $this->v8->executeString($jsCode);
@@ -74,7 +74,7 @@ final class ReduxReactJsRenderer implements ReactJsRendererInterface
 {$redux->js}
     <script src="{$this->clientPublicPath}"></script>
 EOT;
-        $html = str_replace(['{{ html }}', '{{ js }}'], [$redux->html, $js], $this->template);
+        $html = str_replace(['{{ html }}', '{{ js }}'], [$redux->html, $js], $template ?? $this->template);
 
         return $html;
     }
