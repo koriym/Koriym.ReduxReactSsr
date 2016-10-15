@@ -6,7 +6,6 @@ module.exports = {
   entry: {
     react: './ssr/react-bundle',
     app: './ssr/app',
-    client: './client/index'
   },
   output: {
     path: path.join(__dirname, 'public/build'),

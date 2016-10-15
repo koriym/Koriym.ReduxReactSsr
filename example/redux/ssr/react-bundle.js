@@ -7,4 +7,3 @@ global.React = React;
 global.ReactDOM = ReactDOM;
 global.ReactDOMServer = ReactDOMServer;
 global.Provider = Provider;
-global.configureStore = configureStore;

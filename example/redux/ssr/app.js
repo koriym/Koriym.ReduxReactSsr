@@ -1,5 +1,7 @@
 import configureStore from '../common/store/configureStore';
 import App from '../common/components/App';
+import { Provider } from 'react-redux';
 
-global.configureStore = configureStore;
 global.App = App;
+global.Provider = Provider;
+global.configureStore = configureStore;
