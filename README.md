@@ -1,6 +1,6 @@
 # ReduxReactSsr
 
-**ReduxReactSsr** renders Redux React UI on the server-side with **V8Js** as well as on the client.
+**ReduxReactSsr** is a library that uses the power of Facebook's React Redux library to render UI components on the server-side with PHP as well as on the client.
 
 ## Prerequisites
 
@@ -11,36 +11,32 @@
 
 ```php
 <?php
+require dirname(__DIR__, 3) . '/vendor/autoload.php';
 
-use Koriym\ReduxReactSsr\ReduxReactSsr;
+use Koriym\ReduxReactSsr\ReduxReactJs;
 
-require dirname(__DIR__) . '/vendor/autoload.php';
-$ssr = new ReduxReactSsr(
+$ssr = new ReduxReactJs(
     file_get_contents(__DIR__ . '/build/react.bundle.js'),
     file_get_contents(__DIR__ . '/build/app.bundle.js')
 );
-// set initial state for SSR
-$state = ['hello'=> ['message' => 'Hello SSR !']];
-list($html, $js) = $ssr('App', $state);
-?>
+list($markup, $js) = $ssr('App', ['hello' => ['message' => 'Hello, Redux!']], 'root');
+$html = <<<EOT
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Hello SSR</title>
+    <title></title>
   </head>
   <body>
-    <div id="root"><?php echo $html; ?></div>
-    <?php echo $js ?>
+    <div id="root">{$markup}</div>
     <script src="build/react.bundle.js"></script>
-    <script src="build/client.bundle.js"></script>
+    <script src="build/app.bundle.js"></script>
+    <script>{$js}</script>
   </body>
 </html>
+EOT;
+
+echo $html;
 ```
-
-When you don't put html into `<div id="root">`, it still work as CSR (Client Side Rendering) page.
-
-* SSR:`<div id="root"><?php echo $html; ?></div>`
-* CSR:`<div id="root"></div>`
 
 ## Run example
 
@@ -52,6 +48,3 @@ npm install
 npm run build
 npm start
 ```
-
- * `http://127.0.0.1:3000/` for SSR
- * `http://127.0.0.1:3000/index.html` for CSR
