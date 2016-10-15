@@ -4,8 +4,9 @@ var webpack = require('webpack')
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: {
-    react: './ssr/react-bundle',
+    react: './ssr/react',
     app: './ssr/app',
+    client: './client/index'
   },
   output: {
     path: path.join(__dirname, 'public/build'),

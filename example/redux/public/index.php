@@ -1,15 +1,3 @@
-# ReduxReactSsr
-
-**ReduxReactSsr** is a library that uses the power of Facebook's React Redux library to render UI components on the server-side with PHP as well as on the client.
-
-## Prerequisites
-
- * php7
- * [V8Js](http://php.net/v8js)
-
-## Usage
-
-```php
 <?php
 require dirname(__DIR__, 3) . '/vendor/autoload.php';
 
@@ -36,15 +24,3 @@ $html = <<<EOT
 EOT;
 
 echo $html;
-```
-
-## Run example
-
-```
-git clone git@github.com:koriym/Koriym.ReduxReactSsr.git
-composer install
-cd Koriym.ReduxReactSsr/example/redux
-npm install
-npm run build
-npm start
-```
