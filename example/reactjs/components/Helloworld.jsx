@@ -4,9 +4,6 @@ class HelloWorld extends React.Component {
   static propTypes = {
     name: React.PropTypes.string.isRequired,
   }
-  static defaultProps = {
-    name: 'World',
-  }
   constructor(props) {
     super(props);
     this.state = {
@@ -14,12 +11,12 @@ class HelloWorld extends React.Component {
     };
   }
   handleClick() {
-    this.setState({ name: 'CSR'});
+    this.setState({ name: 'World'});
   }
   render() {
     return (
         <div>
-          <div>Hello {this.state.name}</div>
+          <h1>Hello {this.state.name}</h1>
           <button onClick={ this.handleClick.bind(this)}>Click</button>
         </div>
     )

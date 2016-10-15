@@ -4,7 +4,7 @@ var webpack = require('webpack')
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: {
-    react: './ssr/react',
+    react: './ssr/react-bundle',
     app: './ssr/app',
     client: './client/index'
   },

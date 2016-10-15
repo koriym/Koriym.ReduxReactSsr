@@ -47,7 +47,7 @@ When you don't put html into `<div id="root">`, it still work as CSR (Client Sid
 ```
 git clone git@github.com:koriym/Koriym.ReduxReactSsr.git
 composer install
-cd Koriym.ReduxReactSsr/example/
+cd Koriym.ReduxReactSsr/example/redux
 npm install
 npm run build
 npm start
