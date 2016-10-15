@@ -21,8 +21,8 @@ class ReactJsRendererTest extends \PHPUnit_Framework_TestCase
 </html>
 EOT;
         $ssr = new ReactJsRenderer(
-            file_get_contents(__DIR__ . '/build/reactjs/react.bundle.js'),
-            file_get_contents(__DIR__ . '/build/reactjs/helloworld.bundle.js'),
+            file_get_contents(__DIR__ . '/builds/reactjs/react.bundle.js'),
+            file_get_contents(__DIR__ . '/builds/reactjs/helloworld.bundle.js'),
             '/build/react.bundle.js',
             '/build/helloworld.bundle.js',
             $template,

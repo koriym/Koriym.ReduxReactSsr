@@ -21,8 +21,8 @@ class ReduxReactJsRendererTest extends \PHPUnit_Framework_TestCase
 </html>
 EOT;
         $ssr = new ReduxReactJsRenderer(
-            file_get_contents(__DIR__ . '/redux/build/react.bundle.js'),
-            file_get_contents(__DIR__ . '/redux/build/app.bundle.js'),
+            file_get_contents(__DIR__ . '/builds/redux/react.bundle.js'),
+            file_get_contents(__DIR__ . '/builds/redux/app.bundle.js'),
             'redux/build/client.bundle.js',
             $template
         );
