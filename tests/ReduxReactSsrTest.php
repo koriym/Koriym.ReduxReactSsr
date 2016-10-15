@@ -14,8 +14,8 @@ class ReactReduxSsrTest extends \PHPUnit_Framework_TestCase
 
     public function __construct()
     {
-        $reactBundleJs = file_get_contents(dirname(__DIR__) . '/redux/build/react.bundle.js');
-        $appBundleJs = file_get_contents(dirname(__DIR__) . '/redux/build/app.bundle.js');
+        $reactBundleJs = file_get_contents(__DIR__ . '/reduxV0.1/build/react.bundle.js');
+        $appBundleJs = file_get_contents(__DIR__ . '/reduxV0.1/build/app.bundle.js');
         $this->ssr = new ReduxReactSsr($reactBundleJs, $appBundleJs);
     }
 
