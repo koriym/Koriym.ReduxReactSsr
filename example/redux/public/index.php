@@ -6,16 +6,20 @@ use Koriym\ReduxReactSsr\ReduxReactJsRenderer;
 $ssr = new ReduxReactJsRenderer(
     file_get_contents(__DIR__ . '/build/react.bundle.js'),
     file_get_contents(__DIR__ . '/build/app.bundle.js'),
-    'build/client.bundle.js',
-    '<!DOCTYPE html>
+    'build/client.bundle.js'
+);
+list($markup, $js) = $ssr->__invoke(['hello' => ['message' => 'Hello, Redux!']]);
+$html = <<<EOT
+<!DOCTYPE html>
 <html>
   <head>
     <title></title>
   </head>
   <body>
-    <div id="root">{{ html }}</div>
-    {{ js }}
+    <div id="root">{$markup}</div>
+    {$js}
   </body>
-</html>');
-$html = $ssr->render(['hello' => ['message' => 'Hello, Redux!']]);
+</html>
+EOT;
+
 echo $html;
