@@ -58,9 +58,20 @@ if (! App) { PHP.error('{$rootContainer}'); };
 var html = ReactDOMServer.renderToString(React.createElement(Provider, { store: configureStore({$storeJson}) }, React.createElement(App)));
 tmp = {html: html};
 EOT;
-        $v8 = $this->v8->executeString($code);
+        try {
+            $v8 = $this->v8->executeString($code);
+            $html = $v8->html;
+        } catch (\V8JsScriptException $e) {
+            $errorMsg = sprintf(
+                            'V8JsScriptException: %s %s',
+                            $e->getJsSourceLine(),
+                            $e->getJsTrace()
+                        );
+            error_log($errorMsg);
+            $html = '';
+        }
         $js = "ReactDOM.render(React.createElement(Provider,{store:configureStore($storeJson) },React.createElement(App)),document.getElementById('{$id}'));";
 
-        return [$v8->html, $js];
+        return [$html, $js];
     }
 }
