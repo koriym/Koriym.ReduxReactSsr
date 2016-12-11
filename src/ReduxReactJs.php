@@ -6,6 +6,7 @@
  */
 namespace Koriym\ReduxReactSsr;
 
+use Koriym\DevPdoStatement\LoggerInterface;
 use Koriym\ReduxReactSsr\Exception\RootContainerNotFound;
 use V8Js;
 
@@ -53,8 +54,8 @@ var document = typeof document === 'undefined' ? '' : document;
 {$this->reactBundleSrc}
 var React = global.React, ReactDOM = global.ReactDOM, ReactDOMServer = global.ReactDOMServer;
 {$this->appBundleSrc}
-var Provider = global.Provider, configureStore = global.configureStore, App = global.{$rootContainer};
 if (! App) { PHP.error('{$rootContainer}'); };
+var Provider = global.Provider, configureStore = global.configureStore, App = global.{$rootContainer};
 var html = ReactDOMServer.renderToString(React.createElement(Provider, { store: configureStore({$storeJson}) }, React.createElement(App)));
 tmp = {html: html};
 EOT;
@@ -62,12 +63,13 @@ EOT;
             $v8 = $this->v8->executeString($code);
             $html = $v8->html;
         } catch (\V8JsScriptException $e) {
+            $erroCode = substr($e->getJsSourceLine(), $e->getJsStartColumn(), 100);
             $errorMsg = sprintf(
-                            'V8JsScriptException: %s %s',
-                            $e->getJsSourceLine(),
-                            $e->getJsTrace()
+                            'V8JsScriptException:%s -> %s ',
+                            $e->getMessage(),
+                            $erroCode . ' ...'
                         );
-            error_log($errorMsg);
+            trigger_error($errorMsg, E_USER_WARNING); // to be continued
             $html = '';
         }
         $js = "ReactDOM.render(React.createElement(Provider,{store:configureStore($storeJson) },React.createElement(App)),document.getElementById('{$id}'));";
