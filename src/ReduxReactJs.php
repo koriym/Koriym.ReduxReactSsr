@@ -6,7 +6,6 @@
  */
 namespace Koriym\ReduxReactSsr;
 
-use Koriym\DevPdoStatement\LoggerInterface;
 use Koriym\ReduxReactSsr\Exception\RootContainerNotFound;
 use V8Js;
 
