@@ -14,8 +14,8 @@ class ReactReduxJsTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $reactBundleJs = file_get_contents(__DIR__ . '/builds/redux/react.bundle.js');
-        $appBundleJs = file_get_contents(__DIR__ . '/builds/redux/app.bundle.js');
+        $reactBundleJs = file_get_contents(__DIR__ . '/fake/redux-app/public/build/react.bundle.js');
+        $appBundleJs = file_get_contents(__DIR__ . '/fake/redux-app/public/build/app.bundle.js');
         $this->ssr = new ReduxReactJs($reactBundleJs, $appBundleJs);
     }
 
