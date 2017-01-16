@@ -17,5 +17,5 @@ interface ReduxReactJsInterface
      *
      * @return array [$markup, $js]
      */
-    public function __invoke(string $rootContainer, array $store, string $id);
+    public function __invoke(string $rootContainer, array $store, string $id) : View;
 }
