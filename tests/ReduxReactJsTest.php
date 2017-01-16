@@ -44,7 +44,7 @@ class ReactReduxJsTest extends \PHPUnit_Framework_TestCase
 
     public function testInvalidState()
     {
-        $this->expectOutputString('Warning: Failed prop type: Required prop `message` was not specified in `Hello`.' . PHP_EOL . '    in Hello');
+        $this->hasExpectationOnOutput('Warning: Failed prop type');
         $state = ['hello'=> ['__INVALID__' => 'Hello SSR !']];
         $this->ssr->__invoke('App', $state, 'root');
     }
