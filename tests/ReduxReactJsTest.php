@@ -12,7 +12,7 @@ class ReactReduxJsTest extends \PHPUnit_Framework_TestCase
      */
     private $ssr;
 
-    public function __construct()
+    public function setUp()
     {
         $reactBundleJs = file_get_contents(__DIR__ . '/builds/redux/react.bundle.js');
         $appBundleJs = file_get_contents(__DIR__ . '/builds/redux/app.bundle.js');
