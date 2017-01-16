@@ -2,7 +2,6 @@
 
 namespace BEAR\ReactJsModule;
 
-use Koriym\ReduxReactSsr\Exception\RootContainerNotFound;
 use Koriym\ReduxReactSsr\ReduxReactJs;
 
 class ReactReduxJsTest extends \PHPUnit_Framework_TestCase
