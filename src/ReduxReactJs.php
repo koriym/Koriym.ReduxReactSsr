@@ -6,7 +6,6 @@
  */
 namespace Koriym\ReduxReactSsr;
 
-use Koriym\ReduxReactSsr\Exception\RootContainerNotFound;
 use V8Js;
 
 final class ReduxReactJs implements ReduxReactJsInterface
@@ -35,9 +34,6 @@ final class ReduxReactJs implements ReduxReactJsInterface
         $this->v8 = new V8Js();
         $this->reactBundleSrc = $reactBundleSrc;
         $this->appBundleSrc = $appBundleSrc;
-        $this->v8->error = function ($container) {
-            throw new RootContainerNotFound($container);
-        };
     }
 
     /**
@@ -53,7 +49,6 @@ var document = typeof document === 'undefined' ? '' : document;
 {$this->reactBundleSrc}
 var React = global.React, ReactDOM = global.ReactDOM, ReactDOMServer = global.ReactDOMServer;
 {$this->appBundleSrc}
-if (! App) { PHP.error('{$rootContainer}'); };
 var Provider = global.Provider, configureStore = global.configureStore, App = global.{$rootContainer};
 var html = ReactDOMServer.renderToString(React.createElement(Provider, { store: configureStore({$storeJson}) }, React.createElement(App)));
 tmp = {html: html};

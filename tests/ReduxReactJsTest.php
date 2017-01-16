@@ -28,13 +28,6 @@ class ReactReduxJsTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('ReactDOM.render(React.createElement(Provider,{store:configureStore({"hello":{"message":"Hello SSR !"}}) },React.createElement(App)),document.getElementById(\'root\'));', $js);
     }
     
-    public function testInvalidContainerName()
-    {
-        $this->expectException(RootContainerNotFound::class);
-        $state = ['hello'=> ['message' => 'Hello SSR !']];
-        $this->ssr->__invoke('__INVALID__', $state, 'root');
-    }
-
     public function testInvalidReducerNameSpace()
     {
         $this->expectOutputString('Unexpected key "__INVALID__" found in preloadedState argument passed to createStore. Expected to find one of the known reducer keys instead: "hello". Unexpected keys will be ignored.');
