@@ -1,11 +1,11 @@
-# ReduxReactSsr
+# redux-react-ssr
 
-**ReduxReactSsr** is a library that uses the power of Facebook's React Redux library to render UI components on the server-side with PHP as well as on the client.
+**redux-react-ssr** is a library that uses the power of Facebook's React Redux library to render UI components on the server-side with PHP as well as on the client.
 
 ## Prerequisites
 
  * php7.1
- * [V8Js](http://php.net/v8js)
+ * [V8Js](http://php.net/v8js) (optional for development)
 
 ## Usage
 
@@ -40,7 +40,17 @@ EOT;
 echo $html;
 ```
 
-## Run example
+## No V8Js enviroment
+
+It is posibble to use without V8Js extention for development. In that case, Render method return no markup but enable to render by only client without error.
+
+## Installation
+   
+```
+composer require koriym/redux-react-ssr
+```
+
+## Testing redux-react-ssr
 
 ```
 git clone git@github.com:koriym/Koriym.ReduxReactSsr.git
