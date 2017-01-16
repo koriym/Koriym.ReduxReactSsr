@@ -28,7 +28,7 @@ class ReactReduxJsTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('ReactDOM.render(React.createElement(Provider,{store:configureStore({"hello":{"message":"Hello SSR !"}}) },React.createElement(App)),document.getElementById(\'root\'));', $js);
     }
     
-    public function testInvalidContainerrName()
+    public function testInvalidContainerName()
     {
         $this->expectException(RootContainerNotFound::class);
         $state = ['hello'=> ['message' => 'Hello SSR !']];
