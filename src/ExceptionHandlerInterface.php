@@ -12,4 +12,3 @@ interface ExceptionHandlerInterface
 {
     public function __invoke(\V8JsScriptException $e) : void;
 }
-

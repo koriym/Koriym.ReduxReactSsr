@@ -6,6 +6,9 @@
  */
 namespace Koriym\ReduxReactSsr;
 
+/**
+ * @SuppressWarnings(PHPMD)
+ */
 final class VoidV8Js extends \V8Js
 {
     const V8_VERSION = '';
@@ -24,7 +27,8 @@ final class VoidV8Js extends \V8Js
      * @param string $snapshot_blob
      */
     public function __construct($object_name = 'PHP', array $variables = null, array $extensions = null, $report_uncaught_exceptions = true, $snapshot_blob = null)
-    {}
+    {
+    }
 
     /**
      * Compiles and executes script in object's context with optional identifier string.
@@ -33,13 +37,15 @@ final class VoidV8Js extends \V8Js
      * @param string $script
      * @param string $identifier
      * @param int    $flags
-     * @param int    $time_limit    in milliseconds
-     * @param int    $memory_limit  in bytes
+     * @param int    $time_limit   in milliseconds
+     * @param int    $memory_limit in bytes
      *
      * @return string
      */
     public function executeString($script, $identifier = '', $flags = self::FLAG_NONE, $time_limit = 0, $memory_limit = 0)
     {
-        return new Class {public $html = '';};
+        return new class {
+            public $html = '';
+        };
     }
 }
