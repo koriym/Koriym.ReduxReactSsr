@@ -4,7 +4,7 @@
 
 ## Prerequisites
 
- * php7
+ * php7.1
  * [V8Js](http://php.net/v8js)
 
 ## Usage
@@ -50,3 +50,19 @@ npm install
 npm run build
 npm start
 ```
+
+## Install V8Js
+
+### OSX
+
+```
+brew update
+brew install homebrew/php/php71-v8js
+```
+
+edit `php.ini` or add 'V8Js.ini'
+
+```
+extension="/usr/local/opt/php71-v8js/v8js.so"
+```
+
