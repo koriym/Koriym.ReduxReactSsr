@@ -2,7 +2,9 @@
 
 namespace BEAR\ReactJsModule;
 
+use Koriym\ReduxReactSsr\ExceptionHandler;
 use Koriym\ReduxReactSsr\ReduxReactJs;
+use V8Js;
 
 class ReactReduxJsTest extends \PHPUnit_Framework_TestCase
 {
@@ -15,16 +17,16 @@ class ReactReduxJsTest extends \PHPUnit_Framework_TestCase
     {
         $reactBundleJs = file_get_contents(__DIR__ . '/fake/redux-app/public/build/react.bundle.js');
         $appBundleJs = file_get_contents(__DIR__ . '/fake/redux-app/public/build/app.bundle.js');
-        $this->ssr = new ReduxReactJs($reactBundleJs, $appBundleJs);
+        $this->ssr = new ReduxReactJs($reactBundleJs, $appBundleJs, new ExceptionHandler, new V8Js);
     }
 
     public function testInvoke()
     {
         $state = ['hello'=> ['message' => 'Hello SSR !']];
-        list($html, $js) = $this->ssr->__invoke('App', $state, 'root');
-        $this->assertStringStartsWith('<div data-reactroot=', $html);
-        $this->assertContains('<h1 data-reactid="3">Hello SSR !</h1>', $html);
-        $this->assertSame('ReactDOM.render(React.createElement(Provider,{store:configureStore({"hello":{"message":"Hello SSR !"}}) },React.createElement(App)),document.getElementById(\'root\'));', $js);
+        $view = $this->ssr->__invoke('App', $state, 'root');
+        $this->assertStringStartsWith('<div data-reactroot=', $view->html);
+        $this->assertContains('<h1 data-reactid="3">Hello SSR !</h1>', $view->html);
+        $this->assertSame('ReactDOM.render(React.createElement(Provider,{store:configureStore({"hello":{"message":"Hello SSR !"}})},React.createElement(App)),document.getElementById(\'root\'));', $view->js);
     }
     
     public function testInvalidReducerNameSpace()
@@ -36,8 +38,15 @@ class ReactReduxJsTest extends \PHPUnit_Framework_TestCase
 
     public function testInvalidState()
     {
-        $this->hasExpectationOnOutput('Warning: Failed prop type');
+        $this->expectOutputRegex('/Warning: Failed prop type/');
         $state = ['hello'=> ['__INVALID__' => 'Hello SSR !']];
         $this->ssr->__invoke('App', $state, 'root');
+    }
+
+    public function testInvalidValue()
+    {
+        $state = ['hello'=> ['__INVALID__' => 'Hello SSR !']];
+        $view = @$this->ssr->__invoke('_INVALID_', $state, 'root');
+        $this->assertSame('', $view->html);
     }
 }
