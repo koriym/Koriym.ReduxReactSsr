@@ -66,7 +66,7 @@ EOT;
             trigger_error($errorMsg, E_USER_WARNING); // to be continued
             $html = '';
         }
-        $js = "ReactDOM.render(React.createElement(Provider,{store:configureStore($storeJson) },React.createElement(App)),document.getElementById('{$id}'));";
+        $js = "ReactDOM.render(React.createElement(Provider,{store:configureStore($storeJson)},React.createElement(App)),document.getElementById('{$id}'));";
 
         return [$html, $js];
     }
