@@ -53,10 +53,10 @@ final class ReduxReactJs implements ReduxReactJsInterface
         $view = new View;
         try {
             $v8 = $this->v8->executeString($code);
-            $view->html = $v8->html;
+            $view->markup = $v8->markup;
         } catch (\V8JsScriptException $e) {
             $this->handler->__invoke($e);
-            $view->html = '';
+            $view->markup = '';
         }
         $view->js = "ReactDOM.render(React.createElement(Provider,{store:configureStore($storeJson)},React.createElement(App)),document.getElementById('{$id}'));";
 
@@ -73,8 +73,8 @@ var document = typeof document === 'undefined' ? '' : document;
 var React = global.React, ReactDOM = global.ReactDOM, ReactDOMServer = global.ReactDOMServer;
 {$this->appBundleSrc}
 var Provider = global.Provider, configureStore = global.configureStore, App = global.{$rootContainer};
-var html = ReactDOMServer.renderToString(React.createElement(Provider, { store: configureStore({$storeJson}) }, React.createElement(App)));
-tmp = {html: html};
+var markup = ReactDOMServer.renderToString(React.createElement(Provider, { store: configureStore({$storeJson}) }, React.createElement(App)));
+tmp = {markup: markup};
 EOT;
 
         return $code;

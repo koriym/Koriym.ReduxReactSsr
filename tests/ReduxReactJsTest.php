@@ -24,8 +24,8 @@ class ReduxReactJsTest extends \PHPUnit_Framework_TestCase
     {
         $state = ['hello' => ['message' => 'Hello SSR !']];
         $view = $this->ssr->__invoke('App', $state, 'root');
-        $this->assertStringStartsWith('<div data-reactroot=', $view->html);
-        $this->assertContains('<h1 data-reactid="3">Hello SSR !</h1>', $view->html);
+        $this->assertStringStartsWith('<div data-reactroot=', $view->markup);
+        $this->assertContains('<h1 data-reactid="3">Hello SSR !</h1>', $view->markup);
         $this->assertSame('ReactDOM.render(React.createElement(Provider,{store:configureStore({"hello":{"message":"Hello SSR !"}})},React.createElement(App)),document.getElementById(\'root\'));', $view->js);
     }
 
@@ -47,6 +47,6 @@ class ReduxReactJsTest extends \PHPUnit_Framework_TestCase
     {
         $state = ['hello' => ['__INVALID__' => 'Hello SSR !']];
         $view = @$this->ssr->__invoke('_INVALID_', $state, 'root');
-        $this->assertSame('', $view->html);
+        $this->assertSame('', $view->markup);
     }
 }
