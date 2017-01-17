@@ -46,7 +46,7 @@ final class VoidV8Js extends \V8Js
     public function executeString($script, $identifier = '', $flags = self::FLAG_NONE, $time_limit = 0, $memory_limit = 0)
     {
         return new class {
-            public $html = '';
+            public $markup = '';
         };
     }
 }
