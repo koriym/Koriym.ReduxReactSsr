@@ -31,12 +31,6 @@ final class ReduxReactJs implements ReduxReactJsInterface
     private $v8;
 
     /**
-     * @param string           $reactBundleSrc
-     * @param string           $appBundleSrc
-     * @param ExceptionHandlerInterface $handler
-     */
-
-    /**
      * ReduxReactJs constructor.
      *
      * @param string                    $reactBundleSrc Bundled code include React, ReactDom, and Redux
