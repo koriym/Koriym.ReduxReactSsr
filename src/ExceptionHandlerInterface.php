@@ -6,10 +6,9 @@
  */
 namespace Koriym\ReduxReactSsr;
 
-/**
- * @deprecated
- */
-interface ReduxSsrInterface
+use V8Js;
+
+interface ExceptionHandlerInterface
 {
-    public function __invoke(string $rootContainer, array $store);
+    public function __invoke(\V8JsScriptException $e) : void;
 }
