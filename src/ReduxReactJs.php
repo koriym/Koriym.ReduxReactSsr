@@ -51,7 +51,7 @@ final class ReduxReactJs implements ReduxReactJsInterface
      */
     public function __invoke(string $rootContainer, array $store, string $id) : View
     {
-        $storeJson = json_encode($store);
+        $storeJson = json_encode($store, JSON_PRETTY_PRINT);
         $code = $this->getServerSideRenderingCode($rootContainer, $storeJson);
         $view = new View;
         try {
@@ -61,7 +61,7 @@ final class ReduxReactJs implements ReduxReactJsInterface
             $this->handler->__invoke($e);
             $view->markup = '';
         }
-        $view->js = "ReactDOM.render(React.createElement(Provider,{store:configureStore($storeJson)},React.createElement(App)),document.getElementById('{$id}'));";
+        $view->js = "window.__PRELOADED_STATE__ = $storeJson";
 
         return $view;
     }
@@ -71,13 +71,9 @@ final class ReduxReactJs implements ReduxReactJsInterface
         $code = <<< "EOT"
 var console = {warn: function(){}, error: print};
 var global = global || this, self = self || this, window = window || this;
-var document = typeof document === 'undefined' ? '' : document;
-{$this->reactBundleSrc}
-var React = global.React, ReactDOM = global.ReactDOM, ReactDOMServer = global.ReactDOMServer;
+window.__PRELOADED_STATE__ = {$storeJson};
 {$this->appBundleSrc}
-var Provider = global.Provider, configureStore = global.configureStore, App = global.{$rootContainer};
-var markup = ReactDOMServer.renderToString(React.createElement(Provider, { store: configureStore({$storeJson}) }, React.createElement(App)));
-tmp = {markup: markup};
+tmp = {markup: global.serverSiderMarkup};
 EOT;
 
         return $code;
