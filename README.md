@@ -1,3 +1,10 @@
+# PLEASE NOTE, THIS PROJECT IS NO LONGER BEING MAINTAINED
+
+Use [Koriym.Baracoa](https://github.com/koriym/Koriym.Baracoa/blob/1.x/docs/example/redux/public/index.php) instead.
+A [Redux-React-SSR example](https://github.com/koriym/Koriym.Baracoa/blob/1.x/docs/example/redux/public/index.php) is available.
+
+----
+
 # redux-react-ssr
 
 **redux-react-ssr** is a library that uses the power of Facebook's React Redux library to render UI components on the server-side with PHP as well as on the client.
