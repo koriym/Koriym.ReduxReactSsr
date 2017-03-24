@@ -1,6 +1,6 @@
 # PLEASE NOTE, THIS PROJECT IS NO LONGER BEING MAINTAINED
 
-Use [Koriym.Baracoa](https://github.com/koriym/Koriym.Baracoa/blob/1.x/docs/example/redux/public/index.php) instead.
+Use [Koriym.Baracoa](https://github.com/koriym/Koriym.Baracoa) instead.
 A [Redux-React-SSR example](https://github.com/koriym/Koriym.Baracoa/blob/1.x/docs/example/redux/public/index.php) is available.
 
 ----
